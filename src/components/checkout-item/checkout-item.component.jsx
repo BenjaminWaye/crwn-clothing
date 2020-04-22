@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Styled from "styled-components";
 
 import {
   clearItemFromCart,
@@ -7,12 +8,16 @@ import {
   addItem,
 } from "../../redux/cart/cart.actions";
 
-import "./checkout-item.styles.scss";
-
-const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+const CheckoutItem = ({
+  cartItem,
+  clearItem,
+  addItem,
+  removeItem,
+  className,
+}) => {
   const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <div className="checkout-item">
+    <div className={className}>
       <div className="image-container">
         <img src={imageUrl} alt="item" />
       </div>
@@ -40,4 +45,46 @@ const mapDispatchToProps = (dispatch) => ({
   removeItem: (item) => dispatch(removeItem(item)),
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+const StyledCheckoutItem = Styled(CheckoutItem)`
+ width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 15px 0;
+  font-size: 20px;
+  align-items: center;
+
+  .image-container {
+    width: 23%;
+    padding-right: 15px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .name,
+  .quantity,
+  .price {
+    width: 23%;
+  }
+
+  .quantity {
+    display: flex;
+
+    .arrow {
+      cursor: pointer;
+    }
+
+    .value {
+      margin: 0 10px;
+    }
+  }
+
+  .remove-button {
+    padding-left: 12px;
+    cursor: pointer;
+  }
+`;
+
+export default connect(null, mapDispatchToProps)(StyledCheckoutItem);

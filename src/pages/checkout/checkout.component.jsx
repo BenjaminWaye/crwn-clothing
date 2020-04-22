@@ -1,18 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import Styled from "styled-components";
 
 import {
   selectCartItems,
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
 
-import "./checkout.styles.scss";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
-const CheckoutPage = ({ cartItems, cartTotal }) => (
-  <div className="checkout-page">
+const CheckoutPage = ({ cartItems, cartTotal, className }) => (
+  <div className={className}>
     <div className="checkout-header">
       <div className="header-block">
         <span>Product</span>
@@ -50,4 +50,46 @@ const mapStateToProps = createStructuredSelector({
   cartTotal: selectCartTotal,
 });
 
-export default connect(mapStateToProps)(CheckoutPage);
+const StyledCheckoutPage = Styled(CheckoutPage)`
+width: 55%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+
+  .checkout-header {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
+
+    .header-block {
+      text-transform: capitalize;
+      width: 23%;
+
+      &:last-child {
+        width: 8%;
+      }
+    }
+  }
+
+  .total {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 36px;
+  }
+  button {
+    margin-left: auto;
+    margin-top: 50px;
+  }
+  .test-warning {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 24px;
+    color: red;
+  }
+`;
+
+export default connect(mapStateToProps)(StyledCheckoutPage);
