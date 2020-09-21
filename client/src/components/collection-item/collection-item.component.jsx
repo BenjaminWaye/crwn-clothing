@@ -54,6 +54,13 @@ const StyledCollectionItem = styled(CollectionItem)`
     position: absolute;
     top: 255px;
     display: none;
+
+    @media screen and (max-width: 800px) {
+      min-width: unset;
+      opacity: 0.9;
+      display: block;
+      padding: 0 10px;
+    }
   }
 
   &:hover {
@@ -63,6 +70,19 @@ const StyledCollectionItem = styled(CollectionItem)`
     button {
       opacity: 0.85;
       display: flex;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+      button {
+        opacity: unset;
+      }
     }
   }
 

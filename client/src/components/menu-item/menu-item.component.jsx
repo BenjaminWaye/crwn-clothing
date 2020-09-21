@@ -40,6 +40,10 @@ const StyledMenuItem = Styled(MenuItem)`
   margin: 0 7.5px 15px;
   overflow: hidden;
 
+  @media screen and (max-width: 800px) {
+    height: 200px;
+}
+
   &:hover {
     cursor: pointer;
 
@@ -55,6 +59,9 @@ const StyledMenuItem = Styled(MenuItem)`
 
   &.large {
     height: 380px;
+    @media screen and (max-width: 800px) {
+      height: 200px;
+  }
   }
 
   &:first-child {
@@ -96,6 +103,9 @@ const StyledMenuItem = Styled(MenuItem)`
       font-size: 16px;
     }
   }
+  @media screen and (max-width: 800px) {
+    height: 200px;
+}
 `;
 
 export default withRouter(StyledMenuItem);
