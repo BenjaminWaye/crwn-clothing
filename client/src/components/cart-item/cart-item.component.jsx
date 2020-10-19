@@ -37,4 +37,4 @@ width: 100%;
   }
 `;
 
-export default StyledCartItem;
+export default React.memo(StyledCartItem);
